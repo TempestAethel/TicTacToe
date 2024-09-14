@@ -471,11 +471,37 @@ function createAllRows(categoryType, tableId) {
 }
 
 function updateQuickTaskDisplay(taskType) {
-    var currentTask = taskType == "job" ? gameData.currentJob : gameData.currentSkill
-    var quickTaskDisplayElement = document.getElementById("quickTaskDisplay")
-    var progressBar = quickTaskDisplayElement.getElementsByClassName(taskType)[0]
-    progressBar.getElementsByClassName("name")[0].textContent = currentTask.name + " lvl " + currentTask.level
-    progressBar.getElementsByClassName("progressFill")[0].style.width = currentTask.xp / currentTask.getMaxXp() * 100 + "%"
+    var currentTask = taskType == "job" ? gameData.currentJob : gameData.currentSkill;
+    var quickTaskDisplayElement = document.getElementById("quickTaskDisplay");
+    var progressBar = quickTaskDisplayElement.getElementsByClassName(taskType)[0];
+    
+    progressBar.getElementsByClassName("name")[0].textContent = currentTask.name + " lvl " + currentTask.level;
+    progressBar.getElementsByClassName("progressFill")[0].style.width = currentTask.xp / currentTask.getMaxXp() * 100 + "%";
+    
+    // Update Happiness Display
+    var happinessProgressBar = quickTaskDisplayElement.getElementsByClassName("happiness")[0];
+    happinessProgressBar.getElementsByClassName("name")[0].textContent = "Happiness Multiplier";
+    happinessProgressBar.getElementsByClassName("progressFill")[0].style.width = (gameData.happinessMultiplier * 100) + "%";
+}
+
+function toggleHappinessInput() {
+    var inputField = document.getElementById("happinessInput");
+    
+    // Toggle input visibility
+    if (inputField.style.display === "none") {
+        inputField.style.display = "block";
+    } else {
+        var newHappiness = parseFloat(inputField.value);
+        if (!isNaN(newHappiness) && newHappiness > 0) {
+            setHappinessMultiplier(newHappiness);
+        }
+        inputField.style.display = "none";
+    }
+}
+
+function setHappinessMultiplier(value) {
+    gameData.happinessMultiplier = value; // Set new happiness multiplier
+    updateQuickTaskDisplay(); // Refresh the display
 }
 
 function updateRequiredRows(data, categoryType) {

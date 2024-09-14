@@ -208,33 +208,6 @@ function getBindedTaskEffect(taskName) {
     return task.getEffect.bind(task)
 }
 
-function toggleHappinessInput() {
-    var inputField = document.getElementById("happinessInput");
-    var displayField = document.getElementById("happinessDisplay");
-    
-    // Toggle the input field
-    if (inputField.style.display === "none") {
-        inputField.style.display = "inline";
-    } else {
-        // When input field is hidden, apply the new happiness multiplier
-        var newHappiness = parseFloat(inputField.value);
-        if (!isNaN(newHappiness) && newHappiness > 0) {
-            setHappinessMultiplier(newHappiness);
-        }
-        inputField.style.display = "none";
-    }
-}
-
-// Function to update the happiness multiplier
-function setHappinessMultiplier(value) {
-    gameData.happinessMultiplier = value; // Assign new multiplier to gameData
-    updateHappinessDisplay();
-}
-
-function updateHappinessDisplay() {
-    document.getElementById("happinessDisplay").textContent = gameData.happinessMultiplier.toFixed(2);
-}
-
 function getBindedItemEffect(itemName) {
     var item = gameData.itemData[itemName]
     return item.getEffect.bind(item)
@@ -322,6 +295,34 @@ function getHappiness() {
     var happiness = meditationEffect() * butlerEffect() * gameData.currentProperty.getEffect();
     return happiness * gameData.happinessMultiplier; // Apply the multiplier
 }
+
+function toggleHappinessInput() {
+    var inputField = document.getElementById("happinessInput");
+    var displayField = document.getElementById("happinessDisplay");
+    
+    // Toggle the input field
+    if (inputField.style.display === "none") {
+        inputField.style.display = "inline";
+    } else {
+        // When input field is hidden, apply the new happiness multiplier
+        var newHappiness = parseFloat(inputField.value);
+        if (!isNaN(newHappiness) && newHappiness > 0) {
+            setHappinessMultiplier(newHappiness);
+        }
+        inputField.style.display = "none";
+    }
+}
+
+// Function to update the happiness multiplier
+function setHappinessMultiplier(value) {
+    gameData.happinessMultiplier = value; // Assign new multiplier to gameData
+    updateHappinessDisplay();
+}
+
+function updateHappinessDisplay() {
+    document.getElementById("happinessDisplay").textContent = gameData.happinessMultiplier.toFixed(2);
+}
+
 
 function getEvil() {
     return gameData.evil

@@ -1,20 +1,18 @@
 var gameData = {
     taskData: {},
     itemData: {},
-
     coins: 0,
     days: 365 * 14,
     evil: 0,
     paused: false,
     timeWarpingEnabled: true,
-
     rebirthOneCount: 0,
     rebirthTwoCount: 0,
-
     currentJob: null,
     currentSkill: null,
     currentProperty: null,
     currentMisc: null,
+    happinessMultiplier: 1, // Default value
 }
 
 var tempData = {}
@@ -290,10 +288,10 @@ function setCustomEffects() {
 }
 
 function getHappiness() {
-    var meditationEffect = getBindedTaskEffect("Meditation")
-    var butlerEffect = getBindedItemEffect("Butler")
-    var happiness = meditationEffect() * butlerEffect() * gameData.currentProperty.getEffect()
-    return happiness
+    var meditationEffect = getBindedTaskEffect("Meditation");
+    var butlerEffect = getBindedItemEffect("Butler");
+    var happiness = meditationEffect() * butlerEffect() * gameData.currentProperty.getEffect();
+    return happiness * gameData.happinessMultiplier; // Apply the multiplier
 }
 
 function getEvil() {
@@ -851,6 +849,32 @@ function rebirthOne() {
     gameData.rebirthOneCount += 1
 
     rebirthReset()
+}
+function toggleHappinessInput() {
+    var inputField = document.getElementById("happinessInput");
+    var displayField = document.getElementById("happinessDisplay");
+    
+    // Toggle the input field
+    if (inputField.style.display === "none") {
+        inputField.style.display = "inline";
+    } else {
+        // When input field is hidden, apply the new happiness multiplier
+        var newHappiness = parseFloat(inputField.value);
+        if (!isNaN(newHappiness) && newHappiness > 0) {
+            setHappinessMultiplier(newHappiness);
+        }
+        inputField.style.display = "none";
+    }
+}
+
+// Function to update the happiness multiplier
+function setHappinessMultiplier(value) {
+    gameData.happinessMultiplier = value; // Assign new multiplier to gameData
+    updateHappinessDisplay();
+}
+
+function updateHappinessDisplay() {
+    document.getElementById("happinessDisplay").textContent = gameData.happinessMultiplier.toFixed(2);
 }
 
 function rebirthTwo() {

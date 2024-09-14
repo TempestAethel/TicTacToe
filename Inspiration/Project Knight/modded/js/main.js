@@ -15,6 +15,7 @@ var gameData = {
     currentSkill: null,
     currentProperty: null,
     currentMisc: null,
+    happinessMultiplier: 1, // Default value
 }
 
 var tempData = {}

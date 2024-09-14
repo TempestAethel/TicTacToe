@@ -296,6 +296,7 @@ function getHappiness() {
     return happiness * gameData.happinessMultiplier; // Apply the multiplier
 }
 
+/*
 function toggleHappinessInput() {
     var inputField = document.getElementById("happinessInput");
     var displayField = document.getElementById("happinessDisplay");
@@ -323,6 +324,7 @@ function updateHappinessDisplay() {
     document.getElementById("happinessDisplay").textContent = gameData.happinessMultiplier.toFixed(2);
 }
 
+*/
 
 function getEvil() {
     return gameData.evil

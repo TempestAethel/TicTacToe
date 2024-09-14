@@ -1,7 +1,7 @@
 # Progress Knight : Modded
 
 ### Introduction
-Progress Knight is a text-based incremental game, developed by Ihtasham42, which can be played on your browser./
+Progress Knight is a text-based incremental game, developed by Ihtasham42, which can be played on your browser.\
 Find full detail in the original folder
 
 ### Why mod?

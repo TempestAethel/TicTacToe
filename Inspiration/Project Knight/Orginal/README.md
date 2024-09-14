@@ -1,5 +1,7 @@
 # Progress Knight : original creator
 
+https://github.com/ihtasham42/progress-knight/tree/main
+
 ### Introduction
 Progress Knight is a text-based incremental game, developed by Ihtasham42, which can be played on your browser.
 

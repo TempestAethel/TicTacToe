@@ -315,9 +315,12 @@ function toggleHappinessInput() {
     }
 }
 
-// Function to update the happiness multiplier
-function setHappinessMultiplier(value) {
-    gameData.happinessMultiplier = value; // Assign new multiplier to gameData
+
+function setHappinessMultiplier(value) { 
+    // Validate and sanitize the input
+    const validatedValue = value.replace(/[^0-9]/g, ''); // Keep only numeric characters
+    // Convert to number and set the multiplier; default to 1 if empty or invalid
+    gameData.happinessMultiplier = parseFloat(validatedValue) || 1; 
     updateHappinessDisplay();
 }
 

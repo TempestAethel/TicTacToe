@@ -16,6 +16,7 @@ var gameData = {
     currentProperty: null,
     currentMisc: null,
     happinessMultiplier: 1, // Default value
+    GameSpeedMultiplier: 1, // Default value
 }
 
 var tempData = {}
@@ -297,7 +298,6 @@ function getHappiness() {
     return happiness * gameData.happinessMultiplier; // Apply the multiplier
 }
 
-
 function toggleHappinessInput() {
     var inputField = document.getElementById("happinessInput");
     var displayField = document.getElementById("happinessDisplay");
@@ -315,12 +315,8 @@ function toggleHappinessInput() {
     }
 }
 
-
 function setHappinessMultiplier(value) { 
-    // Validate and sanitize the input
-    const validatedValue = value.replace(/[^0-9]/g, ''); // Keep only numeric characters
-    // Convert to number and set the multiplier; default to 1 if empty or invalid
-    gameData.happinessMultiplier = parseFloat(validatedValue) || 1; 
+     gameData.happinessMultiplier = value; // Assign new multiplier to gameData
     updateHappinessDisplay();
 }
 
@@ -328,6 +324,40 @@ function updateHappinessDisplay() {
     document.getElementById("happinessDisplay").textContent = gameData.happinessMultiplier.toFixed(2);
 }
 
+function getGameSpeed() {
+    var timeWarping = gameData.taskData["Time warping"]
+    var timeWarpingSpeed = gameData.timeWarpingEnabled ? timeWarping.getEffect() : 1
+    var gameSpeed = baseGameSpeed * +!gameData.paused * +isAlive() * timeWarpingSpeed
+    return gameSpeed * gameData.GameSpeedMultiplier; // Apply the multiplier
+}
+
+
+function toggleGameSpeedInput() {
+    var inputField = document.getElementById("GameSpeedInput");
+    var displayField = document.getElementById("GameSpeedDisplay");
+    
+    // Toggle the input field
+    if (inputField.style.display === "none") {
+        inputField.style.display = "inline";
+    } else {
+        // When input field is hidden, apply the new GameSpeed multiplier
+        var newGameSpeed = parseFloat(inputField.value);
+        if (!isNaN(newGameSpeed) && newGameSpeed > 0) {
+            setGameSpeedMultiplier(newGameSpeed);
+        }
+        inputField.style.display = "none";
+    }
+}
+
+function setGameSpeedMultiplier(value) { 
+     gameData.GameSpeedMultiplier = value; // Assign new multiplier to gameData
+    updateGameSpeedDisplay();
+}
+
+function updateGameSpeedDisplay() {
+    document.getElementById("GameSpeedDisplay").textContent = gameData.GameSpeedMultiplier.toFixed(2);
+}
+    
 function getEvil() {
     return gameData.evil
 }
@@ -352,13 +382,6 @@ function getEvilGain() {
     var bloodMeditation = gameData.taskData["Blood meditation"]
     var evil = evilControl.getEffect() * bloodMeditation.getEffect()
     return evil
-}
-
-function getGameSpeed() {
-    var timeWarping = gameData.taskData["Time warping"]
-    var timeWarpingSpeed = gameData.timeWarpingEnabled ? timeWarping.getEffect() : 1
-    var gameSpeed = baseGameSpeed * +!gameData.paused * +isAlive() * timeWarpingSpeed
-    return gameSpeed
 }
 
 function applyExpenses() {

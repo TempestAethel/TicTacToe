@@ -1,13 +1,16 @@
 var gameData = {
     taskData: {},
     itemData: {},
+
     coins: 0,
     days: 365 * 14,
     evil: 0,
     paused: false,
     timeWarpingEnabled: true,
+
     rebirthOneCount: 0,
     rebirthTwoCount: 0,
+
     currentJob: null,
     currentSkill: null,
     currentProperty: null,
@@ -294,6 +297,34 @@ function getHappiness() {
     return happiness * gameData.happinessMultiplier; // Apply the multiplier
 }
 
+
+function toggleHappinessInput() {
+    var inputField = document.getElementById("happinessInput");
+    var displayField = document.getElementById("happinessDisplay");
+    
+    // Toggle the input field
+    if (inputField.style.display === "none") {
+        inputField.style.display = "inline";
+    } else {
+        // When input field is hidden, apply the new happiness multiplier
+        var newHappiness = parseFloat(inputField.value);
+        if (!isNaN(newHappiness) && newHappiness > 0) {
+            setHappinessMultiplier(newHappiness);
+        }
+        inputField.style.display = "none";
+    }
+}
+
+// Function to update the happiness multiplier
+function setHappinessMultiplier(value) {
+    gameData.happinessMultiplier = value; // Assign new multiplier to gameData
+    updateHappinessDisplay();
+}
+
+function updateHappinessDisplay() {
+    document.getElementById("happinessDisplay").textContent = gameData.happinessMultiplier.toFixed(2);
+}
+
 function getEvil() {
     return gameData.evil
 }
@@ -471,37 +502,11 @@ function createAllRows(categoryType, tableId) {
 }
 
 function updateQuickTaskDisplay(taskType) {
-    var currentTask = taskType == "job" ? gameData.currentJob : gameData.currentSkill;
-    var quickTaskDisplayElement = document.getElementById("quickTaskDisplay");
-    var progressBar = quickTaskDisplayElement.getElementsByClassName(taskType)[0];
-    
-    progressBar.getElementsByClassName("name")[0].textContent = currentTask.name + " lvl " + currentTask.level;
-    progressBar.getElementsByClassName("progressFill")[0].style.width = currentTask.xp / currentTask.getMaxXp() * 100 + "%";
-    
-    // Update Happiness Display
-    var happinessProgressBar = quickTaskDisplayElement.getElementsByClassName("happiness")[0];
-    happinessProgressBar.getElementsByClassName("name")[0].textContent = "Happiness Multiplier";
-    happinessProgressBar.getElementsByClassName("progressFill")[0].style.width = (gameData.happinessMultiplier * 100) + "%";
-}
-
-function toggleHappinessInput() {
-    var inputField = document.getElementById("happinessInput");
-    
-    // Toggle input visibility
-    if (inputField.style.display === "none") {
-        inputField.style.display = "block";
-    } else {
-        var newHappiness = parseFloat(inputField.value);
-        if (!isNaN(newHappiness) && newHappiness > 0) {
-            setHappinessMultiplier(newHappiness);
-        }
-        inputField.style.display = "none";
-    }
-}
-
-function setHappinessMultiplier(value) {
-    gameData.happinessMultiplier = value; // Set new happiness multiplier
-    updateQuickTaskDisplay(); // Refresh the display
+    var currentTask = taskType == "job" ? gameData.currentJob : gameData.currentSkill
+    var quickTaskDisplayElement = document.getElementById("quickTaskDisplay")
+    var progressBar = quickTaskDisplayElement.getElementsByClassName(taskType)[0]
+    progressBar.getElementsByClassName("name")[0].textContent = currentTask.name + " lvl " + currentTask.level
+    progressBar.getElementsByClassName("progressFill")[0].style.width = currentTask.xp / currentTask.getMaxXp() * 100 + "%"
 }
 
 function updateRequiredRows(data, categoryType) {
@@ -875,32 +880,6 @@ function rebirthOne() {
     gameData.rebirthOneCount += 1
 
     rebirthReset()
-}
-function toggleHappinessInput() {
-    var inputField = document.getElementById("happinessInput");
-    var displayField = document.getElementById("happinessDisplay");
-    
-    // Toggle the input field
-    if (inputField.style.display === "none") {
-        inputField.style.display = "inline";
-    } else {
-        // When input field is hidden, apply the new happiness multiplier
-        var newHappiness = parseFloat(inputField.value);
-        if (!isNaN(newHappiness) && newHappiness > 0) {
-            setHappinessMultiplier(newHappiness);
-        }
-        inputField.style.display = "none";
-    }
-}
-
-// Function to update the happiness multiplier
-function setHappinessMultiplier(value) {
-    gameData.happinessMultiplier = value; // Assign new multiplier to gameData
-    updateHappinessDisplay();
-}
-
-function updateHappinessDisplay() {
-    document.getElementById("happinessDisplay").textContent = gameData.happinessMultiplier.toFixed(2);
 }
 
 function rebirthTwo() {

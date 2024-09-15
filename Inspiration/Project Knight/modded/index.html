@@ -66,18 +66,34 @@
                 <span id="quickTaskDisplay">
                     <div style="width: 230px" class="small-margin inline job progress-bar progressBar">
                         <div class="progress-fill progressFill" style="background-color:rgb(225, 165, 0)"></div>
-                        <div class="progress-text name">Task</div>
+                        <div class="progress-text name">Job</div>
                     </div>
                     <div class="sidebar-element" style="color: gray">Current job</div>
-
+                
                     <div style="width: 230px" class="small-margin skill progress-bar progressBar">
                         <div class="progress-fill progressFill" style="background-color:rgb(225, 165, 0)"></div>
-                        <div class="progress-text name">Task</div>              
+                        <div class="progress-text name">Skill</div>              
                     </div>
                     <div class="sidebar-element" style="color: gray">Current skill</div>
+
+                    <!-- Add Happiness section -->
+                    <div style="width: 230px" class="small-margin happiness progress-bar progressBar">
+                        <div class="progress-fill progressFill" style="background-color:rgb(15, 105, 207)"></div>
+                        <div class="progress-text name">Happiness</div>
+                    </div>
+                    <div class="sidebar-element" style="color: gray">Happiness multiplier</div>
+                
+                    <button id="happinessButton" class="w3-button button sidebar-element" style="margin-top: 5px; width:150px" onclick="toggleHappinessInput()">Edit Happiness</button>
+                    <input type="number" id="happinessInput" class="sidebar-element" style="display: none;" placeholder="Set Happiness Multiplier">
                 </span>
 
-                <div style="font-size: large"><span style="color: rgb(15, 105, 207)">Happiness: </span><span id="happinessDisplay"></span></div>
+
+<div style="font-size: large"><span style="color: rgb(15, 105, 207)">Happiness: </span><span id="happinessDisplay"></span></div>
+<div>
+  <input type="number" id="happinessInput" style="display: none;" placeholder="Set Happiness Multiplier" />
+  <button class="w3-button button" id="happinessButton" onclick="toggleHappinessInput()">Edit Happiness</button>
+</div>
+               
                 <div style="color: gray" class="sidebar-element">Affects all xp gain</div>
 
                 <span id="evilInfo">
@@ -277,7 +293,8 @@
                         <li>
                             <h2>Toggle light/dark mode</h2>
                             <button class="w3-button button" onClick="setLightDarkMode()">Toggle</button>
-                        </li>  
+                        </li>
+               
                         <li>
                             <h2>Hard reset game</h2>
                             <button class="w3-button button w3-red" onClick="resetGameData()">Reset</button>

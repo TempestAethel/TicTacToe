@@ -5,6 +5,7 @@ Game Modes:
 - 2 Player Mode
 - Random AI Mode
 - Smart AI Mode (Minimax algorithm)
+- Easy AI
   
 With a Reset Button 
 
@@ -47,5 +48,6 @@ Made the edges rounded and made the falling 'X' and 'O' not appear on background
 [Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto9.html)
 
 ### 10th Prototype
-framework 
+Mode persitence after reset\
+4th mode called Easy AI\
 [Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto10.html)

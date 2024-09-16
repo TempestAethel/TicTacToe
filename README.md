@@ -9,7 +9,7 @@ Game Modes:
   
 With a Reset Button 
 
-All the file during each step is kept in the Prototypes folder
+# All the file during each step is kept in the Prototypes folder
 
 ### 1st Prototype
 First project - framework\
@@ -47,7 +47,7 @@ Solved the error where 'X' and 'O' not Visible\
 Made the edges rounded and made the falling 'X' and 'O' not appear on background\
 [Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto9.html)
 
-### Final
+### Final Game
 Mode persitence after reset\
 4th mode called Easy AI\
 added a counter\

@@ -5,7 +5,8 @@ Progress Knight is a text-based incremental game, developed by Ihtasham42, which
 Find full detail in the original folder
 
 ### Why mod?
-just for fun , since i like coding , i want to try something 
+just for fun , since i like coding , i want to try something.
+Never used java till now, this is my first dive into it.
 
 ### Where to play Progress Knight Original?
 Progress Knight can be played on the following sites:  

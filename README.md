@@ -9,7 +9,8 @@ With a Reset Button
 
 All the file during each step is kept in the Prototypes folder
 
-### 1st Prototype
+### (1st Prototype)[https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto1.html
+]
 first project - framework 
 https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto1.html
 

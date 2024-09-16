@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,8 +25,6 @@
             grid-gap: 10px;
             margin-bottom: 20px;
             z-index: 1; /* Ensures the board is on top of the background animation */
-            position: relative; /* Add this to position the spans relative to the board */
-            overflow: hidden; /* Ensure content does not overflow outside the board */
         }
 
         .cell {
@@ -37,10 +36,9 @@
             font-size: 2rem;
             background-color: white;
             cursor: pointer;
+            border-radius: 15px; /* Make cells rounded */
             border: 2px solid #333;
             color: black; /* Ensures X and O are visible as black on the board */
-            border-radius: 10px; /* Adjust this value for more or less rounding */
-            position: relative; /* Ensure the cell is positioned correctly for overlap handling */
         }
 
         .status {
@@ -68,7 +66,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0; /* Ensure background-xo is behind the board */
+            z-index: 0;
         }
 
         .background-xo span {
@@ -78,7 +76,6 @@
             color: cyan;
             opacity: 0.1;
             animation: move 15s linear infinite;
-            z-index: 0; /* Ensure spans are behind the board cells */
         }
 
         /* Teal color for the "O"s */
@@ -107,11 +104,9 @@
             <option value="0">2 Player Mode</option>
             <option value="1">Random AI Mode</option>
             <option value="2">Smart AI Mode</option>
-            <option value="3">Easy AI Mode</option> <!-- New Easy AI Mode added -->
+            <option value="3">Easy AI Mode</option>
         </select>
         <button id="reset-button">Reset Game</button>
-        <div>Wins X: <span id="x-wins">0</span></div> <!-- Wins counter for X -->
-        <div>Wins O: <span id="o-wins">0</span></div> <!-- Wins counter for O -->
     </div>
 
     <div>
@@ -128,16 +123,16 @@
         </div>
         <div class="status">
             <p id="game-status">Player X's turn</p>
+            <p id="win-counter">X Wins: 0 | O Wins: 0</p> <!-- Win counter display -->
         </div>
     </div>
 
     <script>
         const cells = document.querySelectorAll('.cell');
         const statusText = document.getElementById('game-status');
+        const winCounterText = document.getElementById('win-counter');
         const modeSelection = document.getElementById('mode-selection');
         const resetButton = document.getElementById('reset-button');
-        const xWinsText = document.getElementById('x-wins');
-        const oWinsText = document.getElementById('o-wins');
 
         let currentPlayer = 'X';
         let gameActive = true;
@@ -192,15 +187,15 @@
 
             if (roundWon) {
                 statusText.innerHTML = `Player ${currentPlayer} wins!`;
-                gameActive = false;
 
                 if (currentPlayer === 'X') {
                     xWins++;
-                    xWinsText.innerHTML = xWins;
                 } else {
                     oWins++;
-                    oWinsText.innerHTML = oWins;
                 }
+
+                updateWinCounter();
+                gameActive = false;
                 return true;
             }
 
@@ -213,6 +208,10 @@
             return false;
         }
 
+        function updateWinCounter() {
+            winCounterText.innerHTML = `X Wins: ${xWins} | O Wins: ${oWins}`;
+        }
+
         function cellClick(event) {
             const clickedCell = event.target;
             const clickedCellIndex = clickedCell.getAttribute('data-index');
@@ -221,7 +220,6 @@
                 return;
             }
 
-            // Disable mode dropdown after first move
             if (!firstTurnTaken) {
                 modeSelection.disabled = true;
                 firstTurnTaken = true;
@@ -241,7 +239,7 @@
                         } else if (gameMode === 2) {
                             playSmartMove();
                         } else if (gameMode === 3) {
-                            playEasyMove(); // Added Easy AI Mode
+                            playEasyMove();
                         }
                     }, 500);
                 }
@@ -259,56 +257,137 @@
 
                 if (!checkForWinner()) {
                     currentPlayer = 'X';
-                    statusText.innerHTML = `Player ${currentPlayer}'s turn`;
+                    statusText.innerHTML = `Player X's turn`;
                 }
             }
         }
 
-        // Simulate human-like random moves
+        function playSmartMove() {
+            let bestMove = getBestMove(board);
+            board[bestMove.index] = 'O';
+            cells[bestMove.index].innerHTML = 'O';
+
+            if (!checkForWinner()) {
+                currentPlayer = 'X';
+                statusText.innerHTML = `Player X's turn`;
+            }
+        }
+
+        // Easy AI Mode: AI will make non-optimal moves, mimicking a casual player
         function playEasyMove() {
             let availableCells = board.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
 
-            if (availableCells.length > 0) {
-                let cellIndex;
-
-                // Prioritize center move if available
-                if (availableCells.includes(4)) {
-                    cellIndex = 4;
-                } else {
-                    const randomIndex = Math.floor(Math.random() * availableCells.length);
-                    cellIndex = availableCells[randomIndex];
+            // Simulate casual decision-making: If AI sees a winning move, take it. Otherwise, play randomly.
+            for (let winCondition of winningConditions) {
+                const [a, b, c] = winCondition;
+                if (board[a] === 'O' && board[b] === 'O' && board[c] === '') {
+                    board[c] = 'O'; // Complete a winning line
+                    cells[c].innerHTML = 'O';
+                    return;
+                } else if (board[a] === 'O' && board[c] === 'O' && board[b] === '') {
+                    board[b] = 'O';
+                    cells[b].innerHTML = 'O';
+                    return;
                 }
+            }
+
+            // Otherwise, make a random move.
+            if (availableCells.length > 0) {
+                const randomIndex = Math.floor(Math.random() * availableCells.length);
+                const cellIndex = availableCells[randomIndex];
 
                 board[cellIndex] = 'O';
                 cells[cellIndex].innerHTML = 'O';
-
-                if (!checkForWinner()) {
-                    currentPlayer = 'X';
-                    statusText.innerHTML = `Player ${currentPlayer}'s turn`;
-                }
             }
         }
 
         function resetBoard() {
             board = ['', '', '', '', '', '', '', '', ''];
-            cells.forEach(cell => {
-                cell.innerHTML = '';
-            });
+            cells.forEach(cell => (cell.innerHTML = ''));
             currentPlayer = 'X';
-            statusText.innerHTML = `Player X's turn`;
             gameActive = true;
             firstTurnTaken = false;
-
-            // Retain mode after reset
-            modeSelection.disabled = false;
+            statusText.innerHTML = `Player X's turn`;
         }
 
-        resetButton.addEventListener('click', resetBoard);
-        cells.forEach(cell => cell.addEventListener('click', cellClick));
+        function handleModeChange() {
+            gameMode = parseInt(modeSelection.value);
+            resetBoard();
+        }
 
-        modeSelection.addEventListener('change', (e) => {
-            gameMode = parseInt(e.target.value);
-        });
+        cells.forEach(cell => cell.addEventListener('click', cellClick));
+        resetButton.addEventListener('click', resetBoard);
+        modeSelection.addEventListener('change', handleModeChange);
+
+        function getBestMove(board) {
+            // Minimax algorithm for Smart AI to calculate the best move
+            let bestScore = -Infinity;
+            let move;
+            for (let i = 0; i < board.length; i++) {
+                if (board[i] === '') {
+                    board[i] = 'O';
+                    let score = minimax(board, 0, false);
+                    board[i] = '';
+                    if (score > bestScore) {
+                        bestScore = score;
+                        move = { index: i };
+                    }
+                }
+            }
+            return move;
+        }
+
+        function minimax(board, depth, isMaximizing) {
+            let scores = { O: 1, X: -1, tie: 0 };
+            let winner = checkWinner();
+            if (winner !== null) {
+                return scores[winner];
+            }
+
+            if (isMaximizing) {
+                let bestScore = -Infinity;
+                for (let i = 0; i < board.length; i++) {
+                    if (board[i] === '') {
+                        board[i] = 'O';
+                        let score = minimax(board, depth + 1, false);
+                        board[i] = '';
+                        bestScore = Math.max(score, bestScore);
+                    }
+                }
+                return bestScore;
+            } else {
+                let bestScore = Infinity;
+                for (let i = 0; i < board.length; i++) {
+                    if (board[i] === '') {
+                        board[i] = 'X';
+                        let score = minimax(board, depth + 1, true);
+                        board[i] = '';
+                        bestScore = Math.min(score, bestScore);
+                    }
+                }
+                return bestScore;
+            }
+        }
+
+        function checkWinner() {
+            for (let i = 0; i < winningConditions.length; i++) {
+                const winCondition = winningConditions[i];
+                let a = board[winCondition[0]];
+                let b = board[winCondition[1]];
+                let c = board[winCondition[2]];
+                if (a === '' || b === '' || c === '') {
+                    continue;
+                }
+                if (a === b && b === c) {
+                    return a;
+                }
+            }
+
+            if (!board.includes('')) {
+                return 'tie';
+            }
+            return null;
+        }
     </script>
 </body>
 </html>

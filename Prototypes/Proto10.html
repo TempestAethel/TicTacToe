@@ -273,26 +273,42 @@
         }
 
         function playEasyMove() {
-            let availableCells = board.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
+             // Find available cells
+           let availableCells = board.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
+ 
+           // Check if X is about to win and block it
+           let move = findBlockingMove('X');
 
-            // Random or simple strategic move logic
-            let cellIndex;
-            if (Math.random() > 0.5) {
-                const randomIndex = Math.floor(Math.random() * availableCells.length);
-                cellIndex = availableCells[randomIndex];
-            } else {
-                cellIndex = availableCells[0]; // Simple strategy: pick the first available cell
+           if (move === null) {
+               // If no block is needed, make a random move
+               const randomIndex = Math.floor(Math.random() * availableCells.length);
+               move = availableCells[randomIndex];
             }
 
-            board[cellIndex] = 'O';
-            cells[cellIndex].innerHTML = 'O';
+          board[move] = 'O';
+          cells[move].innerHTML = 'O';
 
-            if (!checkForWinner()) {
-                currentPlayer = 'X';
-                statusText.innerHTML = `Player X's turn`;
-            }
+          if (!checkForWinner()) {
+           currentPlayer = 'X';
+        statusText.innerHTML = `Player X's turn`;
+    }
+}
+
+        function findBlockingMove(player) {
+    for (let i = 0; i < winningConditions.length; i++) {
+        const [a, b, c] = winningConditions[i];
+
+        if (board[a] === player && board[b] === player && board[c] === '') {
+            return c;
+        } else if (board[a] === player && board[c] === player && board[b] === '') {
+            return b;
+        } else if (board[b] === player && board[c] === player && board[a] === '') {
+            return a;
         }
-
+    }
+    return null;
+}
+     
         function playSmartMove() {
             let bestMove = getBestMove(board);
             board[bestMove.index] = 'O';

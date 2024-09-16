@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe with AI and Animated Background</title>
-    <style>
+       <style>
         /* Body styling with background */
         body {
             font-family: Arial, sans-serif;
@@ -19,12 +18,17 @@
             color: white;
         }
 
+        .board-container {
+            position: relative;
+            z-index: 2; /* Ensures the board and controls are above the background */
+        }
+
         .board {
             display: grid;
             grid-template-columns: repeat(3, 100px);
             grid-gap: 10px;
             margin-bottom: 20px;
-            z-index: 1; /* Ensures the board is on top of the background animation */
+            z-index: 2; /* Ensures the board is on top of the background animation */
         }
 
         .cell {
@@ -48,7 +52,7 @@
 
         .controls {
             margin-bottom: 20px;
-            z-index: 1; /* Keep dropdown and buttons above background animation */
+            z-index: 2; /* Keep dropdown and buttons above background animation */
         }
 
         /* Dropdown styling */
@@ -66,7 +70,8 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1; /* Moves background behind the board */
+            overflow: hidden;
         }
 
         .background-xo span {

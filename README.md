@@ -47,7 +47,8 @@ Solved the error where 'X' and 'O' not Visible\
 Made the edges rounded and made the falling 'X' and 'O' not appear on background\
 [Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto9.html)
 
-### 10th Prototype
+### Final
 Mode persitence after reset\
 4th mode called Easy AI\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto10.html)
+added a counter\
+[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/index.html)

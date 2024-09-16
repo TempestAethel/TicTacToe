@@ -12,7 +12,7 @@ All the file during each step is kept in the Prototypes folder
 
 ### 1st Prototype
 First project - framework
-(Click here for the File)[https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto1.html]
+[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto1.html)
 
 ### 2nd Prototype
 Random computer 

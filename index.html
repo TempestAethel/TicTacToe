@@ -181,46 +181,52 @@
 
         generateBackgroundXO();
 
-        function checkForWinner() {
-            let roundWon = false;
-            for (let i = 0; i < winningConditions.length; i++) {
-                const winCondition = winningConditions[i];
-                let a = board[winCondition[0]];
-                let b = board[winCondition[1]];
-                let c = board[winCondition[2]];
-                if (a === '' || b === '' || c === '') {
-                    continue;
-                }
-                if (a === b && b === c) {
-                    roundWon = true;
-                    break;
-                }
-            }
-
-            if (roundWon) {
-                statusText.innerHTML = `Player ${currentPlayer} wins!`;
-                gameActive = false;
-
-                // Update win counters
-                if (currentPlayer === 'X') {
-                    xWins++;
-                    document.getElementById('x-wins').innerText = xWins;
-                } else {
-                    oWins++;
-                    document.getElementById('o-wins').innerText = oWins;
-                }
-                return true;
-            }
-
-            if (!board.includes('')) {
-                statusText.innerHTML = "It's a draw!";
-                gameActive = false;
-                return true;
-            }
-
-            return false;
+       function checkForWinner() {
+    let roundWon = false;
+    for (let i = 0; i < winningConditions.length; i++) {
+        const winCondition = winningConditions[i];
+        let a = board[winCondition[0]];
+        let b = board[winCondition[1]];
+        let c = board[winCondition[2]];
+        if (a === '' || b === '' || c === '') {
+            continue;
         }
+        if (a === b && b === c) {
+            roundWon = true;
+            break;
+        }
+    }
 
+    if (roundWon) {
+        statusText.innerHTML = `Player ${currentPlayer} wins!`;
+        gameActive = false;
+
+        // Update win counters
+        if (currentPlayer === 'X') {
+            xWins++;
+            document.getElementById('x-wins').innerText = xWins;
+        } else {
+            oWins++;
+            document.getElementById('o-wins').innerText = oWins;
+        }
+        return true;
+    }
+
+    if (!board.includes('')) {
+        statusText.innerHTML = "It's a draw!";
+        gameActive = false;
+        
+        // Check if the game mode is Easy AI, if so, do not update the X wins counter
+        if (gameMode !== 3) {
+            // Increment X wins if not Easy AI mode
+            xWins++;
+            document.getElementById('x-wins').innerText = xWins;
+        }
+        return true;
+    }
+
+    return false;
+}
         function cellClick(event) {
             const clickedCell = event.target;
             const clickedCellIndex = clickedCell.getAttribute('data-index');

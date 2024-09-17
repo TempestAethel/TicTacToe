@@ -54,7 +54,7 @@ added a counter\
 [Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto10.html)
 
 ### Final Game
-Easy AI now wins if it gets a chance
-Board Resets after the End
-Counter for Draw is added
+Easy AI now wins if it gets a chance\
+Board Resets after the End\
+Counter for Draw is added\
 [Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/index.html)

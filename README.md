@@ -9,7 +9,7 @@ Game Modes:
   
 With a Reset Button 
 
-# All the file during each step is kept in the Prototypes folder
+# Prototypes folder
 
 ### 1st Prototype
 First project - framework\

@@ -1,5 +1,6 @@
 # Unwinnable-Tic-Tac-Toe
-A tic tac toe where you can only lose or draw 
+A tic tac toe where you can only lose or draw \
+[Click here to play](https://tempestaethel.github.io/TicTacToe/)
 
 Game Modes:
 - 2 Player Mode

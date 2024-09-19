@@ -88,9 +88,12 @@
         }
 
         /* Teal color for the "O"s */
-        .background-xo .o {
-            color: teal;
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const oElements = document.querySelectorAll('.background-xo .o');
+
+            oElements.forEach(oElement => {
+                const randomColor = Math.random() > 0.5 ? 'teal' : 'cyan';
+                oElement.style.color = randomColor;
 
         /* Animations for background */
         @keyframes move {
@@ -112,8 +115,8 @@
         <select id="mode-selection">
             <option value="0">2 Player Mode</option>
             <option value="1">Kid Mode</option>
-            <option value="2">Unbeatable Mode</option>
             <option value="3">Human Mode</option>
+            <option value="2">Unbeatable Mode</option>
         </select>
         <button id="reset-button">Reset Game</button>
     </div>

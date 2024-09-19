@@ -88,12 +88,9 @@
         }
 
         /* Teal color for the "O"s */
-        document.addEventListener('DOMContentLoaded', function() {
-            const oElements = document.querySelectorAll('.background-xo .o');
-
-            oElements.forEach(oElement => {
-                const randomColor = Math.random() > 0.5 ? 'teal' : 'cyan';
-                oElement.style.color = randomColor;
+         .background-xo .o {
+            color: teal;
+        }
 
         /* Animations for background */
         @keyframes move {
@@ -172,17 +169,21 @@
         ];
 
         function generateBackgroundXO() {
-            const container = document.getElementById('background-xo');
-            for (let i = 0; i < 50; i++) {
-                const span = document.createElement('span');
-                span.textContent = Math.random() > 0.5 ? 'X' : 'O';
-                if (span.textContent === 'O') span.classList.add('o');
-                span.style.left = Math.random() * 100 + 'vw';
-                span.style.animationDuration = Math.random() * 5 + 10 + 's';
-                span.style.opacity = Math.random() * 0.3 + 0.1;
-                container.appendChild(span);
-            }
-        }
+        const container = document.getElementById('background-xo');
+        for (let i = 0; i < 50; i++) {
+        const span = document.createElement('span');
+        span.textContent = Math.random() > 0.5 ? 'X' : 'O';
+
+        // Randomize the color between teal and cyan
+        const randomColor = Math.random() > 0.5 ? 'teal' : 'cyan';
+        span.style.color = randomColor;
+
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDuration = Math.random() * 5 + 10 + 's';
+        span.style.opacity = Math.random() * 0.3 + 0.1;
+        container.appendChild(span);
+    }
+}
 
         generateBackgroundXO();
 

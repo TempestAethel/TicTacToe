@@ -4,18 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
     <style>
-        /* Body styling with background */
+        /* Body styling with gradient background */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #2c2c2c;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: white;
             position: relative;
             overflow: hidden;
-            color: white;
         }
 
         .board {
@@ -34,18 +34,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2rem;
-            background-color: white;
+            font-size: 3rem;
+            background: rgba(255, 255, 255, 0.8);
             cursor: pointer;
-            border: 2px solid #333;
-            color: black;
+            border: 3px solid #333;
+            color: #333;
             border-radius: 10px;
-            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cell:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .status {
             margin-top: 20px;
             text-align: center;
+            font-weight: bold;
         }
 
         .controls {
@@ -58,6 +64,29 @@
             padding: 10px;
             font-size: 16px;
             margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: border-color 0.2s;
+        }
+
+        select:focus {
+            border-color: #333;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #e74c3c;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #c0392b;
         }
 
         /* Counters */
@@ -88,7 +117,7 @@
         }
 
         /* Teal color for the "O"s */
-         .background-xo .o {
+        .background-xo .o {
             color: teal;
         }
 
@@ -169,21 +198,21 @@
         ];
 
         function generateBackgroundXO() {
-        const container = document.getElementById('background-xo');
-        for (let i = 0; i < 50; i++) {
-        const span = document.createElement('span');
-        span.textContent = Math.random() > 0.5 ? 'X' : 'O';
+            const container = document.getElementById('background-xo');
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement('span');
+                span.textContent = Math.random() > 0.5 ? 'X' : 'O';
 
-        // Randomize the color between teal and cyan
-        const randomColor = Math.random() > 0.5 ? 'teal' : 'cyan';
-        span.style.color = randomColor;
+                // Randomize the color between teal and cyan
+                const randomColor = Math.random() > 0.5 ? 'teal' : 'cyan';
+                span.style.color = randomColor;
 
-        span.style.left = Math.random() * 100 + 'vw';
-        span.style.animationDuration = Math.random() * 5 + 10 + 's';
-        span.style.opacity = Math.random() * 0.3 + 0.1;
-        container.appendChild(span);
-    }
-}
+                span.style.left = Math.random() * 100 + 'vw';
+                span.style.animationDuration = Math.random() * 5 + 10 + 's';
+                span.style.opacity = Math.random() * 0.3 + 0.1;
+                container.appendChild(span);
+            }
+        }
 
         generateBackgroundXO();
 

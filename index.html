@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
     <style>
-        /* Body styling with gradient background */
         body {
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -12,7 +11,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            background: linear-gradient(135deg, #000000, #434343);
             color: white;
             position: relative;
             overflow: hidden;
@@ -25,7 +24,6 @@
             margin-bottom: 20px;
             z-index: 1;
             position: relative;
-            overflow: hidden;
         }
 
         .cell {
@@ -35,17 +33,18 @@
             justify-content: center;
             align-items: center;
             font-size: 3rem;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
             cursor: pointer;
             border: 3px solid #333;
-            color: #333;
+            color: #ffffff;
             border-radius: 10px;
             transition: transform 0.2s, box-shadow 0.2s;
+            backdrop-filter: blur(5px);
         }
 
         .cell:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .status {
@@ -59,7 +58,6 @@
             z-index: 1;
         }
 
-        /* Dropdown styling */
         select {
             padding: 10px;
             font-size: 16px;
@@ -89,14 +87,12 @@
             background-color: #c0392b;
         }
 
-        /* Counters */
         #win-counter {
             margin-top: 20px;
             text-align: center;
             color: white;
         }
 
-        /* Animated Background */
         .background-xo {
             position: absolute;
             top: 0;
@@ -116,12 +112,10 @@
             animation: move 15s linear infinite;
         }
 
-        /* Teal color for the "O"s */
         .background-xo .o {
             color: teal;
         }
 
-        /* Animations for background */
         @keyframes move {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -133,11 +127,9 @@
     </style>
 </head>
 <body>
-    <!-- Animated background for X and O -->
     <div class="background-xo" id="background-xo"></div>
 
     <div class="controls">
-        <!-- Mode selection dropdown -->
         <select id="mode-selection">
             <option value="0">2 Player Mode</option>
             <option value="1">Kid Mode</option>
@@ -164,11 +156,10 @@
         </div>
     </div>
 
-    <!-- Win Counter -->
     <div id="win-counter">
         <p>Wins for X: <span id="x-wins">0</span></p>
         <p>Wins for O: <span id="o-wins">0</span></p>
-        <p>Draws: <span id="draws">0</span></p> <!-- Draw counter -->
+        <p>Draws: <span id="draws">0</span></p>
     </div>
 
     <script>
@@ -203,7 +194,6 @@
                 const span = document.createElement('span');
                 span.textContent = Math.random() > 0.5 ? 'X' : 'O';
 
-                // Randomize the color between teal and cyan
                 const randomColor = Math.random() > 0.5 ? 'teal' : 'cyan';
                 span.style.color = randomColor;
 
@@ -267,7 +257,6 @@
                 return;
             }
 
-            // Disable mode dropdown after first move
             if (!firstTurnTaken) {
                 modeSelection.disabled = true;
                 firstTurnTaken = true;
@@ -313,15 +302,12 @@
         function playEasyMove() {
             let availableCells = board.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
 
-            // Check if O can win
             let move = findWinningMove('O');
 
-            // If O can't win, check if X is about to win and block it
             if (move === null) {
                 move = findBlockingMove('X');
             }
 
-            // If no block or win is needed, make a random move
             if (move === null) {
                 const randomIndex = Math.floor(Math.random() * availableCells.length);
                 move = availableCells[randomIndex];
@@ -351,7 +337,7 @@
         }
 
         function findBlockingMove(player) {
-            return findWinningMove(player); // This works the same way for blocking
+            return findWinningMove(player);
         }
 
         function playSmartMove() {

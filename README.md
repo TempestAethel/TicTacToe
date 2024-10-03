@@ -58,4 +58,7 @@ added a counter\
 Easy AI now wins if it gets a chance\
 Board Resets after the End\
 Counter for Draw is added\
+[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Final.html)
+
+### Updated Appearance 
 [Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/index.html)

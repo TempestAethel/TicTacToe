@@ -136,41 +136,6 @@
         background: linear-gradient(45deg, #00bfff, #1e90ff);
         transform: scale(1.05);
     }
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.8); /* Fallback color */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    color: #333;
-    border-radius: 10px;
-}
-
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 
         @keyframes move {
@@ -224,22 +189,6 @@
         <p>Draws: <span id="draws">0</span></p>
     </div>
 
-    <div id="info-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h2>Game Instructions</h2>
-        <p>Welcome to Tic-Tac-Toe! Here’s how to play:</p>
-        <ul>
-            <li>The game is played on a 3x3 grid.</li>
-            <li>Players take turns placing their mark (X or O) in an empty cell.</li>
-            <li>The first player to align three of their marks in a row (horizontally, vertically, or diagonally) wins!</li>
-            <li>If all cells are filled and no player has three in a row, the game ends in a draw.</li>
-        </ul>
-        <p>Select your game mode from the dropdown to start!</p>
-    </div>
-</div>
-
-
     <script>
         const cells = document.querySelectorAll('.cell');
         const statusText = document.getElementById('game-status');
@@ -271,24 +220,6 @@
 infoButton.addEventListener('click', () => {
     window.open('info.html', '_blank'); // Opens the README.md file in a new tab
 });
-
-        const infoModal = document.getElementById('info-modal');
-const closeButton = document.querySelector('.close-button');
-
-infoButton.addEventListener('click', () => {
-    infoModal.style.display = 'block';
-});
-
-closeButton.addEventListener('click', () => {
-    infoModal.style.display = 'none';
-});
-
-window.addEventListener('click', (event) => {
-    if (event.target === infoModal) {
-        infoModal.style.display = 'none';
-    }
-});
-
 
 
         function generateBackgroundXO() {
@@ -326,7 +257,7 @@ window.addEventListener('click', (event) => {
             }
 
             if (roundWon) {
-                statusText.innerHTML = `Player ${currentPlayer} wins!`;
+                statusText.innerHTML = Player ${currentPlayer} wins!;
                 gameActive = false;
 
                 if (currentPlayer === 'X') {
@@ -370,7 +301,7 @@ window.addEventListener('click', (event) => {
 
             if (!checkForWinner()) {
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-                statusText.innerHTML = `Player ${currentPlayer}'s turn`;
+                statusText.innerHTML = Player ${currentPlayer}'s turn;
 
                 if (gameMode > 0 && currentPlayer === 'O') {
                     setTimeout(() => {
@@ -397,7 +328,7 @@ window.addEventListener('click', (event) => {
 
                 if (!checkForWinner()) {
                     currentPlayer = 'X';
-                    statusText.innerHTML = `Player X's turn`;
+                    statusText.innerHTML = Player X's turn;
                 }
             }
         }
@@ -421,7 +352,7 @@ window.addEventListener('click', (event) => {
 
             if (!checkForWinner()) {
                 currentPlayer = 'X';
-                statusText.innerHTML = `Player X's turn`;
+                statusText.innerHTML = Player X's turn;
             }
         }
 
@@ -450,7 +381,7 @@ window.addEventListener('click', (event) => {
 
             if (!checkForWinner()) {
                 currentPlayer = 'X';
-                statusText.innerHTML = `Player X's turn`;
+                statusText.innerHTML = Player X's turn;
             }
         }
 
@@ -522,7 +453,7 @@ window.addEventListener('click', (event) => {
             currentPlayer = 'X';
             gameActive = true;
             firstTurnTaken = false;
-            statusText.innerHTML = `Player X's turn`;
+            statusText.innerHTML = Player X's turn;
             modeSelection.disabled = false;
         }
 

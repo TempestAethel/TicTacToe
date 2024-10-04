@@ -257,7 +257,7 @@ infoButton.addEventListener('click', () => {
             }
 
             if (roundWon) {
-                statusText.innerHTML = Player ${currentPlayer} wins!;
+                statusText.innerHTML = `Player ${currentPlayer} wins!`;
                 gameActive = false;
 
                 if (currentPlayer === 'X') {
@@ -301,7 +301,7 @@ infoButton.addEventListener('click', () => {
 
             if (!checkForWinner()) {
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-                statusText.innerHTML = Player ${currentPlayer}'s turn;
+                statusText.innerHTML = `Player ${currentPlayer}'s turn`;
 
                 if (gameMode > 0 && currentPlayer === 'O') {
                     setTimeout(() => {
@@ -328,7 +328,7 @@ infoButton.addEventListener('click', () => {
 
                 if (!checkForWinner()) {
                     currentPlayer = 'X';
-                    statusText.innerHTML = Player X's turn;
+                    statusText.innerHTML = `Player X's turn`;
                 }
             }
         }
@@ -352,7 +352,7 @@ infoButton.addEventListener('click', () => {
 
             if (!checkForWinner()) {
                 currentPlayer = 'X';
-                statusText.innerHTML = Player X's turn;
+                statusText.innerHTML = `Player X's turn`;
             }
         }
 
@@ -381,7 +381,7 @@ infoButton.addEventListener('click', () => {
 
             if (!checkForWinner()) {
                 currentPlayer = 'X';
-                statusText.innerHTML = Player X's turn;
+                statusText.innerHTML = `Player X's turn`;
             }
         }
 
@@ -453,7 +453,7 @@ infoButton.addEventListener('click', () => {
             currentPlayer = 'X';
             gameActive = true;
             firstTurnTaken = false;
-            statusText.innerHTML = Player X's turn;
+            statusText.innerHTML = `Player X's turn`;
             modeSelection.disabled = false;
         }
 

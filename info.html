@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,11 +9,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
             background: linear-gradient(135deg, #000000, #434343);
             color: white;
-            overflow: hidden;
+            overflow: auto; /* Allow scrolling */
             padding: 20px;
+            margin: 0; /* Remove default margin */
         }
 
         h1 {
@@ -31,6 +30,8 @@
             margin: 20px 0;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
+            width: 100%; /* Make sections responsive */
+            max-width: 600px; /* Limit max width for larger screens */
         }
 
         button {

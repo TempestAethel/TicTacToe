@@ -116,6 +116,28 @@
             color: teal;
         }
 
+            #info-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(45deg, #1e90ff, #00bfff);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 10px 15px;
+        border-radius: 10px;
+        transition: background-color 0.3s, transform 0.2s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+    
+    #info-button:hover {
+        background: linear-gradient(45deg, #00bfff, #1e90ff);
+        transform: scale(1.05);
+    }
+
+
         @keyframes move {
             0% {
                 transform: translateY(0) rotate(0deg);

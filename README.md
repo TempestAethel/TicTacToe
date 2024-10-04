@@ -1,67 +1,55 @@
-# Unwinnable-Tic-Tac-Toe
-A tic tac toe where you can only lose or draw \
-[Click here to play](https://tempestaethel.github.io/TicTacToe/)
 
-Game Modes:
-- 2 Player Mode
-- Random AI Mode
-- Smart AI Mode (Minimax algorithm)
-- Easy AI
-  
-With a Reset Button 
 
-# Prototypes folder
+# Tic-Tac-Toe Game Features
 
-### 1st Prototype
-First project - framework\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto1.html)
+## Overview
+This is a simple web-based Tic-Tac-Toe game that allows players to compete against each other or against AI opponents. The game features a visually appealing design and includes various game modes.
 
-### 2nd Prototype
-Random computer \
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto2.html)
+## Key Features
 
-### 3rd Prototype
-Mode of random or 2 Player\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto3.html)
+### 1. User Interface
+- **Responsive Design**: The game is designed to be centered on the screen with a gradient background, ensuring a visually appealing experience on various screen sizes.
+- **Game Board**: 
+  - A 3x3 grid representing the Tic-Tac-Toe board.
+  - Each cell is designed to expand slightly when hovered over, enhancing user interaction.
+- **Status Display**: Displays the current player's turn or announces the winner or a draw.
+- **Win Counter**: Keeps track of wins for both players (X and O) and the total number of draws.
 
-### 4th Prototype
-Mode Toggling is turned off after first move\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto4.html)
+### 2. Game Modes
+- **2 Player Mode**: Two players take turns to play against each other.
+- **Kid Mode**: A mode designed to be more forgiving for younger players (details on mechanics are not explicitly defined in the code).
+- **Human Mode**: Mode where a human player competes against a simpler AI.
+- **Unbeatable Mode**: Features a smart AI that uses a minimax algorithm to prevent the player from winning.
 
-### 5th Prototype
-Added third mode\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto5.html)
+### 3. AI Opponents
+- **Random Move AI**: Makes moves randomly from available cells.
+- **Easy AI**: Attempts to block the player’s winning moves or makes random moves if no immediate threat is detected.
+- **Smart AI**: Uses the minimax algorithm to determine the optimal move, ensuring a challenging game.
 
-### 6th Prototype
-Solved the error where Smart Ai is stuck after first move\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto6.html)
+### 4. Interactive Elements
+- **Cell Interaction**: Players click on cells to place their marks (X or O).
+- **Reset Button**: Resets the game board and clears all statuses and scores.
+- **Mode Selection Dropdown**: Allows players to choose the game mode before starting the game.
 
-### 7th Prototype
-Added a background \
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto7.html)
+### 5. Animations and Visuals
+- **Background Animation**: Animated 'X' and 'O' characters move across the background, adding visual flair to the game.
+- **Hover Effects**: Cells grow in size slightly and cast a shadow when hovered over, providing feedback to users.
 
-### 8th Prototype
-Solved the error where 'X' and 'O' not Visible\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto8.html)
+### 6. Game Logic
+- **Winning Conditions**: The game checks for winning combinations after each move.
+- **Draw Condition**: Detects if the game ends in a draw when all cells are filled without a winner.
+- **Automatic Reset**: The game resets automatically after a win or draw after a brief pause, allowing for quick succession of games.
 
-### 9th Prototype
-Made the edges rounded and made the falling 'X' and 'O' not appear on background\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto9.html)
+### 7. Accessibility
+- **Keyboard Focus**: Elements like dropdown menus are focusable, enhancing accessibility for users navigating via keyboard.
 
-### 10th Prototype
-Mode persitence after reset\
-4th mode called Easy AI\
-added a counter\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Proto10.html)
+### 8. Custom Styles
+- Uses CSS styles to ensure that the game is visually attractive, including custom fonts, colors, and transitions.
 
-### Final Game
-Easy AI now wins if it gets a chance;\
-Board Resets after the End;\
-Counter for Draw is added;\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/Prototypes/Final.html)
+## Conclusion
+This Tic-Tac-Toe game provides a robust and engaging experience for players of all ages. The various game modes and AI difficulty levels cater to both casual players and those looking for a challenge.
+[Click here to play the game](https://tempestaethel.github.io/TicTacToe/)
 
-### Updated Appearance 
-A smooth gradient for the background.\
-Hover effects that make the cells more interactive.\
-Enhanced button styles for better user experience.\
-[Click here for the File](https://github.com/TempestAethel/Unwinnable-TicTacToe/blob/main/index.html)
+## Prototype Files
+For the complete prototype files, please refer to [Prototypr.md](link-to-your-prototypr.md)./
+Do note that the files may or maynot to playable due to few errors 

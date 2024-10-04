@@ -51,5 +51,5 @@ This Tic-Tac-Toe game provides a robust and engaging experience for players of a
 [Click here to play the game](https://tempestaethel.github.io/TicTacToe/)
 
 ## Prototype Files
-For the complete prototype files, please refer to [Prototypr.md](link-to-your-prototypr.md).\
+For the complete prototype files, please refer to [Prototypr.md](link-to-your-prototype.md).\
 Do note that the files may or maynot to playable due to few errors.

@@ -129,6 +129,11 @@
 <body>
     <div class="background-xo" id="background-xo"></div>
 
+    <button id="info-button" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: white; font-size: 2rem; cursor: pointer; z-index: 1;">
+    ℹ️
+    </button>
+
+
     <div class="controls">
         <select id="mode-selection">
             <option value="0">2 Player Mode</option>
@@ -187,6 +192,13 @@
             [0, 4, 8],
             [2, 4, 6]
         ];
+
+        const infoButton = document.getElementById('info-button');
+
+infoButton.addEventListener('click', () => {
+    window.open('README.md', '_blank'); // Opens the README.md file in a new tab
+});
+
 
         function generateBackgroundXO() {
             const container = document.getElementById('background-xo');
